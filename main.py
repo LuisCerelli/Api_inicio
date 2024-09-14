@@ -51,6 +51,8 @@ r = requests.get(url)
 j = r.json()
 personajes = j['characters']
 lista_names_human = list()
+lista_names_other = list()
+
 for personaje in personajes:
     #print(personaje)
     req = requests.get(personaje)
@@ -58,5 +60,17 @@ for personaje in personajes:
     name = js['name']
     if js['species'] == 'Human':
         lista_names_human.append(name)
+    else:
+        lista_names_other.append(name)
 
-print(lista_names_human) 
+print(f"La lista de los nombres de seres humanos es: \n{'\n'.join(lista_names_human)}") 
+print(f"En cambio, la lista de los seres NO humanos es:\n {'\n'.join(lista_names_other)}")
+
+#otra forma de imprimir tipo columna y que los nombres no salgan uno abajo del otro es: 
+print("La lista de los nombres humanos es: ")
+for name in lista_names_human:
+    print(name)
+
+print("\nEn cambio, la lista de los seres NO humanos es: ")
+for name in lista_names_other:
+    print(name)
